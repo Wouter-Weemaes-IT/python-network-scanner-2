@@ -5,6 +5,13 @@ from scapy.all import *
 import os
 from art import *
 
+
+def printToHTML(packet):
+   HTMLWrite = open("log.html","a")
+   HTMLWrite.write(packet + "\n")
+   HTMLWrite.close()
+
+
 def clear():
      os.system('cls' if os.name=='nt' else 'clear')
      return("   ")
@@ -36,6 +43,9 @@ def checkIfExists(inHost):
     
     if status == False and inHost != "false":
         hosts.append(inHost)
+        printToHTML(inHost)
+
+
     clear()
     tprint("Hosts")
     print(hosts)

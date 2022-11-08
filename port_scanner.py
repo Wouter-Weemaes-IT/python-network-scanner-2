@@ -6,6 +6,11 @@ def print_ports(port, state):
 
 scantype = "syn"
 
+def printToHTML(packet):
+   HTMLWrite = open("log.html","a")
+   HTMLWrite.write(packet + "\n")
+   HTMLWrite.close()
+
 
 # syn scan
 def syn_scan(target, ports):
@@ -19,6 +24,7 @@ def syn_scan(target, ports):
 					print_ports(port, "")
 				elif pkt[TCP].flags == 18:
 					print_ports(port, "Open")
+					printToHTML(ports + "open\n")
 				else:
 					print_ports(port, "TCP packet resp / filtered")
 			elif pkt.haslayer(ICMP):
